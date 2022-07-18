@@ -1,0 +1,84 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col lg-6 mx-auto">
+        <form action="/login" method="post" id="form1">
+  <div class="mb-3">
+    <h4 class="text-danger bg-white">{{Message}}{{message}}</h4>
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" name="email"  class="form-control" id="email" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" name="password" value="asd" class="form-control" id="password">
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <a href="/signup/null" class="form-check-label" for="exampleCheck1">Dont have account?</a>
+</div>
+
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+  <form action="/otp-login" >
+   <a href="/otp-login">Login with otp</a>
+   </form>
+<div>
+<a href="/password-change" class="form-check-label" for="exampleCheck1">forgot password?</a>  
+</div>
+
+</form>
+      </div>
+      
+  </div>
+</section>
+
+
+
+
+  <script>
+      
+        const email=document.getElementById("email");
+        const password=document.getElementById("password");
+        const form=document.getElementById("form");
+        const error1=document.getElementById("errorEmail");
+        const error2=document.getElementById("errorPassword")
+ 
+        form.addEventListener('submit',(e)=>{
+          let message1=[]
+          let message2=[]
+      
+          if(email.value===''||email.value==null){
+            message1.push('Please enter the Email')
+        }else if(email.value.indexOf('@')<=0){
+          message1.push('Invaild @ position')
+        }else if(email.value.charAt(email.value.length-4)!='.'){
+          message1.push('format of email is incorrect')
+
+        }else if(email.value.indexOf('@')==''){
+          message1.push('@ is missing')
+
+        }
+        
+          if(password.value===''||password.value==null){
+            message2.push('Please enter the password')
+          }
+           else if(password.value.length<4){
+            message2.push('password must be atleast 4 char')
+          }
+          if(message1.length>0){
+           e.preventDefault();
+           error1.innerText=message1.join('  ')
+          }
+          if(message2.length>0){
+            e.preventDefault()
+            error2.innerText=message2.join('  ')
+          }
+         
+         
+        })
+       
+      </script> 
+
+
+

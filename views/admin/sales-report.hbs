@@ -1,0 +1,110 @@
+<div class="container-scroller d-flex">
+    <!-- partial:./partials/_sidebar.html -->
+    {{>admin-header}}
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:./partials/_navbar.html -->
+      {{>admin-navbar}}
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+
+<div class="container d-flex justify-content-center">
+<div class="container border m-5 pt-3">
+    <div class="row">
+     <div class="col-md-6">
+        <form action="/admin/sales-report" method="post">
+        <label>Start Date:</label>
+<input type="date" class="form-control" name="start" >
+ <label>End Date:</label>
+<input type="date" class="form-control" name="end" >
+<button type="submit" >Search</button>
+</form>
+</div>
+       <div class="col-md-6 text-center">
+          <h4>Total Sales</h4>
+          <p>{{total}}</p>
+        </div>
+      
+      <div class="text-center pe-0 ms-5 mb-3" style="padding-left:10rem;">
+        <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Choose Period
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="/admin/weekly-report">Weekly</a></li>
+    <li><a class="dropdown-item" href="/admin/monthly-report">Monthly</a></li>
+    <li><a class="dropdown-item" href="/admin/yearly-report">yearly</a></li>
+  </ul>
+</div>
+     </div>
+
+
+    </div>
+<table id="example" class="display ">
+    <thead class="container text-center ">
+        <tr>
+            <th class="col-1 border">Index</th>
+             <th class="col-1 border">Details</th>
+            <th class="col-1 border">Name</th>
+            <th class="col-1 border">email</th>
+            <th class="col-1 border">Address</th>
+            <th class="col-1 border">Payment</th>
+            <th class="col-1 border">Amount</th>
+            <th class="col-1 border">Status</th>
+           
+            
+            
+        </tr>
+    </thead>
+        
+    <tbody class="text-center border m-1">
+        {{#each orderDetails}}
+        <tr> 
+          <td>{{inc @index}}</td>
+         <td>
+          <a href="/admin/view-order/{{this._id}}"  class="btn btn-primary">View Products</a></td> 
+            <td class="col-1 ">{{deliveryDetails.name}}</td>         
+            <td class="col-1 ">{{deliveryDetails.email}}</td>         
+            <td class="col-2 ">{{deliveryDetails.address}}</td>         
+            <td class="col-1 ">{{deliveryDetails.paymentMethod}}</td>         
+            <td class="col-1 ">{{this.totalAmount}}</td>         
+            <td class="col-1 ">{{this.status}}</td>         
+            </tr>  
+        
+       
+        {{/each}}
+       
+       
+    </tbody>
+</table>
+
+</div>
+</div>
+
+
+
+         <!-- row end -->
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:./partials/_footer.html -->
+       
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+
+
+<script>
+	
+$(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+</script>

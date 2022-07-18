@@ -1,0 +1,60 @@
+<div class="container-scroller d-flex">
+    <!-- partial:./partials/_sidebar.html -->
+    {{>admin-header}}
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:./partials/_navbar.html -->
+      {{>admin-navbar}}
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+
+
+          <section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+ 
+ 
+ 
+ <table class="table mt-5">
+  <thead>
+    <tr>
+      <th scope="col">No.</th>
+      <th scope="col">Coupon Name</th>
+      <th scope="col">User Name</th>
+      <th scope="col">Offer Percentage</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+        {{#each details}}
+      <td scope="row">{{inc @index}}</td>
+      <td>{{this.Coupon}}</td>
+      <td>{{this.user.Name}}</td>
+      <td>{{this.Offer}}</td>
+       </tr>
+
+{{/each}}
+
+
+
+    </div>
+    </div>
+  </div>
+ </section>
+
+
+
+    <!-- row end -->
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:./partials/_footer.html -->
+       
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>

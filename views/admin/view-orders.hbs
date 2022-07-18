@@ -1,0 +1,172 @@
+
+<div class="container-scroller d-flex">
+    <!-- partial:./partials/_sidebar.html -->
+    {{>admin-header}}
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:./partials/_navbar.html -->
+      {{>admin-navbar}}
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+
+
+
+<div class="container-fluid text-warning" style="">
+ 
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
+<link rel="stylesheet" type="text/js" href="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+</div>
+
+<div class="container mt-5 rounded p-2" style=" backdrop-filter: blur(10px);background:rgb(188, 188, 188) ;">
+<table class="container  display border border-dark table text-dark" id="example">
+  <thead>
+    <tr>
+      <th scope="col">no.</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Author</th>
+      <th scope="col">Price</th>
+      <th scope="col">Description</th>
+      
+
+    </tr>
+  </thead>
+  <tbody>
+  {{#each products}}
+    <tr class="text-center">
+      <th scope="row">{{inc @index}}</th>
+      <td class="text-capitalize">{{product.Name}}</td>
+      <td>{{product.Category}}</td>
+      <td class="text-capitalize">{{product.Author}}</td>
+      <td>{{product.Price}}</td>
+      <td>{{product.Description}}</td>
+
+    </tr>
+
+    <script>
+      function cancelorder(event) {
+        var name = event.currentTarget.name;
+        event.preventDefault();
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "You want to cancel!",
+          icon: 'warning',
+          iconColor: '#bf0f0f',
+          showCancelButton: true,
+          confirmButtonColor: '#11ba25',
+          cancelButtonColor: '#bf0f0f',
+          confirmButtonText: `Yes`
+        }).then((result) => {
+          if (result.isConfirmed) {
+          
+            location.reload()
+          } else {
+            return false;
+          }
+        })
+      }
+      function alert() {
+        Swal.fire({
+          icon: 'success',
+          title: 'Updated',
+          confirmButtonText: `Yes`
+        }).then((result) => {
+          if (result.isConfirmed) {
+           
+             location.href = "/admin/orderbook"
+             location.reload()
+          } else {
+            return false;
+          }
+        
+      })
+      }
+    </script>
+    {{/each}}
+
+  </tbody>
+
+
+</table>
+
+</div>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.1/js/buttons.flash.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascropt" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+
+
+<script>
+ $(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+      
+        buttons: [
+            'copy', 'csv', 'excel', 'print','pdf'
+        ]
+        
+    } );
+} );
+</script>
+
+
+
+
+
+{{!-- <script>
+    function changeQuantity(cartId,proId,userId,count){
+        let quantity=parseInt(document.getElementById(proId).innerHTML)
+        count=parseInt(count)
+        console.log(userId)
+
+        $.ajax({
+            url:'/change-product-quantity',
+             data:{
+                user:userId,
+                cart:cartId,
+                product:proId,
+                count:count,
+                quantity:quantity
+             },
+             method:'post',
+             success:(response)=>{
+                if(response.removeProduct){
+                    alert("Product removed from cart")
+                    location.reload()
+
+                }else{
+                    console.log(response)
+                    document.getElementById(proId).innerHTML=quantity+count
+                    document.getElementById('total').innerHTML=response.total
+                }
+             }
+        })
+    }
+
+</script> --}}
+
+
+        <!-- row end -->
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:./partials/_footer.html -->
+       
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>

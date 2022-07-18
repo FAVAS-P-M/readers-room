@@ -1,0 +1,91 @@
+
+
+
+
+
+
+
+
+
+<div class="container-scroller d-flex">
+    <!-- partial:./partials/_sidebar.html -->
+    {{>admin-header}}
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:./partials/_navbar.html -->
+      {{>admin-navbar}}
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+
+
+
+
+
+
+
+<div class="container d-flex justify-content-center">
+
+<div class="container border m-5 pt-3">
+<table id="example" class="display ">
+    <thead class="container text-center ">
+        <tr>
+            <th class="col-1 border">Index</th>
+             <th class="col-1 border">Details</th>
+            <th class="col-1 border">Name</th>
+            <th class="col-1 border">email</th>
+            <th class="col-1 border">Address</th>
+            <th class="col-1 border">Payment</th>
+            <th class="col-1 border">Amount</th>
+            <th class="col-1 border">Status</th>
+            <th class="col-1 border">Change-Status</th>
+              <th class="col-1 border">actions</th>
+            
+            
+        </tr>
+    </thead>
+        {{#each orderDetails}}
+    <tbody class="text-center border m-1">
+        <tr> 
+          <td>{{inc @index}}</td>
+         <td>
+          <a href="/admin/view-order/{{this._id}}"  class="btn btn-primary">View Products</a></td> 
+            <td class="col-1 ">{{deliveryDetails.name}}</td>         
+            <td class="col-1 ">{{deliveryDetails.email}}</td>         
+            <td class="col-2 ">{{deliveryDetails.address}}</td>         
+            <td class="col-1 ">{{deliveryDetails.paymentMethod}}</td>         
+            <td class="col-1 ">{{this.totalAmount}}</td>         
+            <td class="col-1 ">{{this.status}}</td>         
+           <form action="/admin/change-status/{{this._id}}" method="post"><td class="col-1 "><select name="status" id="" class="form-control">
+                <option >Select</option>
+                <option value="shipped">shipped</option>
+                <option value="delivered">delivered</option>
+                <option value="cancel">cancel</option>
+           </select>  <td><button type="submit" class="btn btn-primary">Apply</button></td>
+            </td>   
+            </form> 
+         </tr>  
+        
+       
+        {{/each}}
+       
+       
+    </tbody>
+</table>
+
+</div>
+</div>
+
+
+
+         <!-- row end -->
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:./partials/_footer.html -->
+       
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>

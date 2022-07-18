@@ -1,0 +1,69 @@
+
+<div class="container-scroller d-flex">
+    <!-- partial:./partials/_sidebar.html -->
+    {{>admin-header}}
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:./partials/_navbar.html -->
+      {{>admin-navbar}}
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+
+
+
+
+
+<section>
+    <div class="container">
+        <div class="row">
+            <table class="table ">
+  <thead>
+    <tr>
+      <th scope="col">No.</th>
+      <th scope="col">Category-name</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each categories}}
+    <tr>
+      <td scope="row">{{inc @index}}</td>
+      <td>{{this.Category}}</td>
+      <td><a href="/admin/edit-category/{{this._id}}"><button class="btn btn-success">Edit</button></a></td>
+      <td><button onclick="onclicksx('{{this._id}}','{{this.Category}}')" class="btn btn-danger">Delete</button></td> 
+     
+    </tr>
+    {{/each}}
+  
+  </tbody>
+</table>
+<div>
+<a href="/admin/add-category"><button class="btn btn-success ">Add category</button></a>
+</div>
+        </div>
+    </div>
+</section>
+<script src="/javascripts/script.js"></script>
+
+
+
+
+
+
+ <!-- row end -->
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:./partials/_footer.html -->
+       
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+
+
+
+

@@ -1,0 +1,142 @@
+<section>
+    <div class="container">
+        <table class="table mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Title</th> 
+                    <th scope="col">Price</th>         
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total Price</th>
+                    
+                   
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {{#each products}}
+                <tr>
+                
+                    <td><img style="width:70px; height:70px" src="/uploads/{{this.product.productImages.[0].filename}}"  alt="" ></td>
+                    <td>{{this.product.Name}}</td>
+                     <td>
+                      <span style="display:none" id="{{this.product.Name}}">{{this.product.Price}}</span>
+                       {{#if this.product.offer}}
+            {{else}}
+            <p class="card-text">Rs:{{this.product.Price}}/-</p>
+              {{/if}}
+            {{#if this.product.offer }}
+             <p class="card-text">Rs:{{this.product.Price}}/-</p>
+            <strike class="card-text text-danger">{{showPrice this.product.offerStart this.product.offerEnd this.product.offer this.product.Price}}</strike><span class="text-danger">{{showOffer this.offerStart this.offerEnd this.offer}}</span>
+           
+            
+              <p class="card-text">{{showDiscount  this.product.offerStart this.product.offerEnd this.product.offer this.product.Price}}</p>
+             {{/if}}
+                      </td>
+            
+                    <td>
+                      <p>{{this.userid}}</p>
+                        <button class="cart-item-count mr-3" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../userid}}',-1,'{{this.product.Name}}','{{ counter @index }}')" >-</button><span id="{{this.product._id}}">{{this.quantity}}</span>
+                    <button class="cart-item-count ml-3" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../userid}}',1,'{{this.product.Name}}','{{ counter @index }}')">+</button>
+                    
+                    </td>
+                    <td><span id="{{ counter @index }}">{{amount this.product.Price this.quantity}}</span>
+                          
+
+                    </td>
+                 
+                    <td>
+                      <button class="btn btn-danger" onclick="myFunction('{{this.product._id}}','{{this.product.Name}}')" >Remove</button>
+                        {{!-- <a href="/delete-cart-item/{{this.product._id}}" class="btn btn-danger">Remove</a> --}}
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+
+        </table>
+        <hr>
+        <div class="float-right pr-5">
+        <h5 class="float-right mr-5 " >Total: Rs.<span id="total">{{totalValue}}</span></h5>
+   <a href="/place-order"  class="float-right btn btn-success mt-3" style="width:100%" ><b>Place Order</b></a>
+   
+   </div>
+    </div>
+</section>
+
+
+
+<script>
+ function myFunction(proId,proName){
+
+
+Swal.fire({
+  title: 'Are you sure ?', 
+  text:"you want to remove --"+proName,
+  showDenyButton: true,
+  confirmButtonText: 'Remove',
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
+    window.location.href="/delete-cart-item/"+proId
+  } else if (result.isDenied) {
+    Swal.fire('YOur data is safe!')
+  }
+})
+ }
+
+  
+
+
+
+
+
+    function changeQuantity(cartId,proId,userId,count,name,index){
+      console.log(userId)
+      console.log(cartId,proId,userId,count,name,index)
+      let quantity=parseInt(document.getElementById(proId).innerHTML)
+      let price=parseInt(document.getElementById(name).innerHTML)
+      count=parseInt(count)
+      console.log(name)
+        $.ajax({
+            url:'/change-product-quantity',
+            data:{
+              user:userId,
+                cart:cartId,
+                product:proId,
+                count:count,
+                quantity:quantity
+            },
+            method:'post',
+            success:(response)=>{
+              console.log(response)
+              if(response.removeProduct){
+                alert("Product removed from cart")
+                location.reload()
+              }else{
+                console.log(response)
+                document.getElementById(proId).innerHTML=quantity+count
+                document.getElementById('total').innerHTML=response.total
+                document.getElementById(index).innerHTML=(quantity+count)*price
+              }
+              
+            }
+        })
+    }
+
+
+  
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+

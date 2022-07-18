@@ -1,0 +1,70 @@
+<div class="row">
+     <div class="col-md-6 m-auto">
+         <div class="container mt-5 pt-5">
+             <h2 class="text-center">Admin Login</h2>
+             <form action="/admin/admin-login" id="form" method="POST">
+             
+                 <div class="form-group">
+                     <label>Email address</label>
+                     <input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
+                      <span id="errorEmail" style="color:crimson"></span>
+                 </div>
+                 <div class="form-group">
+                     <label>Password</label>
+                     <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                     <span id="errorPassword" style="color:crimson"></span>
+                 </div>
+                 
+                 <button type="submit" class="btn btn-primary float-right">Login</button>
+             </form>
+
+         </div>
+     </div>
+ </div>
+
+     
+      <script>
+      
+        const email=document.getElementById("email");
+        const password=document.getElementById("password");
+        const form=document.getElementById("form");
+        const error1=document.getElementById("errorEmail");
+        const error2=document.getElementById("errorPassword")
+ 
+        form.addEventListener('submit',(e)=>{
+          let message1=[]
+          let message2=[]
+      
+          if(email.value===''||email.value==null){
+            message1.push('Please enter the Email')
+        }else if(email.value.indexOf('@')<=0){
+          message1.push('Invaild @ position')
+        }else if(email.value.charAt(email.value.length-4)!='.'){
+          message1.push('format of email is incorrect')
+
+        }else if(email.value.indexOf('@')==''){
+          message1.push('@ is missing')
+
+        }
+        
+          if(password.value===''||password.value==null){
+            message2.push('Please enter the password')
+          }
+           else if(password.value.length<4){
+            message2.push('password must be atleast 4 char')
+          }
+          if(message1.length>0){
+           e.preventDefault();
+           error1.innerText=message1.join('  ')
+          }
+          if(message2.length>0){
+            e.preventDefault()
+            error2.innerText=message2.join('  ')
+          }
+         
+         
+        })
+       
+      </script>
+
+   

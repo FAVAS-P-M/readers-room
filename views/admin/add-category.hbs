@@ -1,0 +1,53 @@
+
+<div class="container-scroller d-flex">
+    <!-- partial:./partials/_sidebar.html -->
+    {{>admin-header}}
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:./partials/_navbar.html -->
+      {{>admin-navbar}}
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+
+
+
+
+
+
+
+
+<section>
+    <div class="container">
+        <div class="row">
+            <h2>Add Category</h2>
+            <div class="col-md-6">
+                  <form action="/admin/add-category" method="post">
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Enter Category Name</label>
+    <input type="Category" name="Category" class="form-control" value="{{this.Category}}"  placeholder="Enter category">
+    </div>
+ 
+  <button type="submit" onclick="alert('Successfully added to category')"  class="btn btn-primary">Submit</button>
+
+</form>
+
+            </div>
+          
+        </div>
+    </div>
+</section>
+
+
+       <!-- row end -->
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:./partials/_footer.html -->
+       
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>

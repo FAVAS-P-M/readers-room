@@ -1,0 +1,14 @@
+
+express --hbs
+cdn file bootstrap install cheyanam
+bootstrapnte basic layout page index il iduka
+npm init -y
+npm install
+npx express-generator --hbs
+
+npm install nodemon 
+npm i express-fileupload
+npm i mongodb
+npm i bcrypt
+npm i express-session
+npm i twilio

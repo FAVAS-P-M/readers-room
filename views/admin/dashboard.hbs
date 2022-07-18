@@ -1,0 +1,173 @@
+<div class="container-scroller d-flex">
+  <!-- partial:./partials/_sidebar.html -->
+  {{>admin-header}}
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:./partials/_navbar.html -->
+    {{>admin-navbar}}
+    <!-- partial -->
+    {{>edit-user}}
+    <div class="main-panel">
+      <div class="content-wrapper">
+        {{!-- {{>charts}} --}}
+
+
+
+    <div class="col-md-12">
+      <div class="row">
+
+          <div class="card" style="width: 18rem;">
+  <img src="" class="card-img-top" alt="">
+  <div class="card-body">
+    <h5 class="card-title">Total Users</h5>
+    <p class="card-text"></p>
+    <a href="#" class="btn btn-primary">{{this.usersCount}}</a>
+  </div>
+</div> 
+   
+   
+        <div class="card" style="width: 18rem;">
+  <img src="" class="card-img-top" alt="">
+  <div class="card-body">
+    <h5 class="card-title">Total Products</h5>
+    <p class="card-text"></p>
+    <a href="#" class="btn btn-primary">{{this.productCount}}</a>
+  </div>
+</div>   
+
+       <div class="card" style="width: 18rem;">
+  <img src="" class="card-img-top" alt="">
+  <div class="card-body">
+    <h5 class="card-title">Total Orders</h5>
+    <p class="card-text"></p>
+    <a href="#" class="btn btn-primary">{{this.orderCount}}</a>
+  </div>
+</div>  
+   
+
+          <div class="card" style="width: 18rem;">
+  <img src="" class="card-img-top" alt="">
+  <div class="card-body">
+    <h5 class="card-title">Inactive Users</h5>
+    <p class="card-text"></p>
+    <a href="#" class="btn btn-primary">{{this.active}}</a>
+  </div>
+</div> 
+   
+   
+    </div>
+    </div>
+    
+        <input type="text" value="{{productCount}}" name="" id="prodCount" hidden>
+        <input type="text" value="{{usersCount}}" name="" id="usersCount" hidden>
+        <input type="text" value="{{orderCount}}" name="" id="orderCount" hidden>
+        <input type="text" value="{{active}}" name="" id="active" hidden>
+        
+        <div class="row">
+
+        <div class="col-4">
+
+          <canvas id="myChart" width="50" height="50"></canvas>
+        </div>
+        
+        <div class="col-4">
+
+        <canvas id="myChart1" width="50" height="50"></canvas>
+        </div> <!-- row end -->
+
+        <div>
+          <div>
+  <canvas id="myChart"></canvas>
+</div>
+        </div>
+      
+        </div>
+      
+      
+      
+      
+      </div>
+      <!-- content-wrapper ends -->
+      <!-- partial:./partials/_footer.html -->
+
+      <!-- partial -->
+    </div>
+    <!-- main-panel ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
+</div>
+
+<script>
+  let users = document.getElementById("usersCount").value
+  let orders = document.getElementById("orderCount").value
+  let products = document.getElementById("prodCount").value
+  let active = document.getElementById("active").value
+
+  const labels = [
+    'users',
+    'active',
+    'products',
+    
+  ];
+
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: 'My First dataset',
+      backgroundColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgb(255, 99, 132)',
+      data: [users, active, products],
+    }]
+  };
+
+  var config = {
+    type: 'bar',
+    data: data,
+    options: {}
+  };
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+</script>
+
+<script>
+ let users = document.getElementById("usersCount").value
+  let orders = document.getElementById("orderCount").value
+  let products = document.getElementById("prodCount").value
+  let active = document.getElementById("active").value
+
+
+  const labels = [
+    'users',
+    'active',
+    'products',
+  ];
+
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: 'My First dataset',
+      backgroundColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgb(255, 99, 132)',
+      data: [users,active,products, 2, 20, 30, 45],
+    }]
+  };
+
+  const config = {
+    type: 'pie',
+    data: data,
+    options: {}
+  };
+
+    const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+</script>
+
+
+
+
+
+

@@ -1,0 +1,69 @@
+
+    <header>
+   <nav class="navbar navbar-expand-lg container-fluid bg-secondary text-light">
+  <div class="container-fluid">
+    <a class="navbar-brand text-light " href="/">READERS ROOM </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/cart">Cart <span class="sr-only" class="badge badge-success">{{cartCount}}</span></a>
+        </li>
+
+         <li class="nav-item">
+          <a class="nav-link active" href="/orders">Orders</a>
+        </li>
+        {{#if categories}}
+       
+        <li>
+          <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Categories
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+     {{#each categories}}
+    <a class="dropdown-item" href="/category-products/{{this.Category}}">{{this.Category}}</a>
+    {{/each}}
+  </div>
+</div>
+        </li>
+       
+{{/if}}
+
+       </ul>
+ 
+
+{{#if user}}
+
+<div>
+  <a href="/user-profile"><i class="bi bi-person me-3" style="font-size:50px;color: aliceblue;" ></i></a>
+</div>
+{{/if}}
+      <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown">
+    {{#if user}}
+    {{user.Name}}
+    {{else}}
+       Account
+    {{/if}}
+    
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    {{#if user}}
+    <a class="dropdown-item" href="/logout">Logout</a>
+    {{else}}
+         <a class="dropdown-item" href="/login">Login</a>
+         {{/if}}
+  </div>
+</div>
+  
+    </div> 
+  </div>
+</nav>
+</header>
+

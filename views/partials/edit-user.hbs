@@ -1,0 +1,44 @@
+<div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Financial management review</h4>
+                  <div class="table-responsive">
+                    {{!--  --}}
+                    <table class="table mt-5" id="productTable">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Mobile number</th>
+      <th scope="col">Option</th>
+
+    </tr>
+  </thead>
+  <tbody>
+      {{#each users}}
+    <tr>
+      
+      <td>{{this.Name}}</td>
+      <td>{{this.Email}}</td>
+      <td>{{this.numbers}}</td>
+      <td>
+    
+        {{#if blockStatus}}
+        <a href="/admin/unblock-user/{{this._id}}" class="btn btn-success" onclick="return confirm('Are you want to unBlock {{this.Name}} ?')">unBlock</a>
+        {{else}}
+        <a href="/admin/block-user/{{this._id}}" class="btn btn-danger" onclick="return confirm('Are you want to Block {{this.Name}} ?')">Block</a>
+        {{/if}}
+        </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+                    {{!--  --}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+

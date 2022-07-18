@@ -1,0 +1,200 @@
+
+<div class="container-scroller d-flex">
+    <!-- partial:./partials/_sidebar.html -->
+    {{>admin-header}}
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:./partials/_navbar.html -->
+      {{>admin-navbar}}
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+         {{!-- view product --}}
+
+<style>
+  
+.list-wrapper {
+	padding: 15px;
+	overflow: hidden;
+}
+.list-item {
+	border: 1px solid #EEE;
+	background: #FFF;
+	margin-bottom: 10px;
+	padding: 10px;
+	box-shadow: 0px 0px 10px 0px #EEE;
+}
+.list-item h4 {
+	color: #FF7182;
+	font-size: 18px;
+	margin: 0 0 5px;	
+}
+.list-item p {
+	margin: 0;
+}
+.simple-pagination ul {
+	margin: 0 0 20px;
+	padding: 0;
+	list-style: none;
+	text-align: center;
+}
+.simple-pagination li {
+	display: inline-block;
+	margin-right: 5px;
+}
+.simple-pagination li a,
+.simple-pagination li span {
+	color: #666;
+	padding: 5px 10px;
+	text-decoration: none;
+	border: 1px solid #EEE;
+	background-color: #FFF;
+	box-shadow: 0px 0px 10px 0px #EEE;
+}
+.simple-pagination .current {
+	color: #FFF;
+	background-color: #FF7182;
+	border-color: #FF7182;
+}
+.simple-pagination .prev.current,
+.simple-pagination .next.current {
+	background: #e04e60;
+}
+</style>
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js"></script>
+
+<section>
+    <div class="container">
+      <div class="row mt-4">
+            <a href="/admin/add-product" class="btn btn-success ml-auto" >Add Product</a> 
+         
+        <table class="table mt-5">
+  <thead>
+    <tr>
+      <th scope="col">No.</th>
+      <th scope="col">Title</th>
+      <th scope="col">Category</th>
+      <th scope="col">Description</th>
+      <th scope="col">Price</th>
+      <th>Image</th>
+       <th scope="col"></th>
+       <th scope="col"></th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {{#each products}}
+    <tr>
+      <td scope="row">{{inc @index}}</td>
+      <td>{{this.Name}}</td>
+      <td>{{this.Category}}</td>
+      <td>{{this.Description}}</td>
+        <td>{{this.Price}}</td>
+      
+      <td><img style="width:50px; height:50px" src="/uploads/{{this.productImages.[0].filename}}" alt="" >
+
+      <button type="button" name="image" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{this._id}}">
+  Edit Images
+</button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal{{this._id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/admin/edit-images/{{this._id}}" method="post" enctype="multipart/form-data">
+        
+                    <label for="">Image</label>
+                    {{this.Name}}
+                <div class="mb-3  col-lg-3 mt-4">
+                  <img src="" id="imgView" alt="" style="width:100px">
+                  <input type="file" class="form-control" id="id_image2" name="image" multiple  >
+                   <br>
+                  <div class="vald-info" id="info2"></div>
+                  <h5 class="error_form text-danger" id="image2_error_message"></h5>
+                     </div> 
+<input type="submit" class="btn btn-primary">Save changes</input>
+</form>
+ </td>
+
+     <td><a href="/admin/edit-product/{{this._id}}"> <button class="btn btn-primary">Edit</button></a></td>
+      <td>
+      
+        <button class="btn btn-danger" onclick="deleteButton('/admin/delete-product/{{this._id}}')" >Delete</button></td>
+       <script src="sweetalert2.all.min.js"></script>
+    </tr>
+    {{/each}}
+
+  </tbody>
+
+</table>
+    </div>
+    
+    </div>
+
+</section>
+         {{!-- /view products --}}
+          
+          
+          
+          <!-- row end -->
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:./partials/_footer.html -->
+       
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+
+ 
+
+
+    <div id="pagination-container"></div>
+
+{{!-- pagination --}}
+<script>
+  // jQuery Plugin: http://flaviusmatis.github.io/simplePagination.js/
+  var items = $(".list-wrapper .list-item");
+  var numItems = items.length;
+  var perPage = 8;
+  items.slice(perPage).hide();
+  $('#pagination-container').pagination({
+    items: numItems,
+    itemsOnPage: perPage,
+    prevText: "&laquo;",
+    nextText: "&raquo;",
+    onPageClick: function (pageNumber) {
+      var showFrom = perPage * (pageNumber - 1);
+      var showTo = showFrom + perPage;
+      items.hide().slice(showFrom, showTo).show();
+    }
+  });
+</script>
+
+<script>
+  function deleteButton(value){
+  Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    {window.location=value}
+    
+  }
+})
+  }
+</script>
+

@@ -1,0 +1,104 @@
+
+<div class="container-scroller d-flex">
+    <!-- partial:./partials/_sidebar.html -->
+    {{>admin-header}}
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:./partials/_navbar.html -->
+      {{>admin-navbar}}
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+
+
+
+
+
+<section>
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-6 mx-auto">
+                <h2>Edit Product</h2>
+                <form action="/admin/edit-product/{{item._id}}" method="post">
+                
+                 <label for="">Name</label>
+                <input type="text" name="Name" class="form-control" value="{{item.Name}}">
+                <br>
+
+                 
+                 <label>Categories</label>
+                 <br>
+                 <select id="select" name="Category">Category
+                        {{#each categories}}
+                        <option value="{{this.Category}}" name="Category">{{this.Category}}</option>
+                        {{/each}}
+                </select>
+                <br>
+                <br>
+
+                 <label for="">Author</label>
+                    <span id="errors" style="color:crimson"></span>
+                    <input type="text" name="Author" class="form-control" value="{{item.Author}}">
+
+                <label for="">Price</label>
+                <input type="number" name="Price" class="form-control" value="{{item.Price}}">
+
+                <label for="">Description</label>
+                <input type="text" name="Description" class="form-control" value="{{item.Description}}">
+
+                 <label for="">ISBN:</label>
+                    <span id="errors" style="color:crimson"></span>
+                    <input type="number" name="ISBN" class="form-control" value="{{item.ISBN}}">
+
+                    <label for="">No. of pages</label>
+                    <span id="errors" style="color:crimson"></span>
+                    <input type="number" name="Pages" class="form-control" value="{{item.Pages}}">
+
+                    <label for="">Language</label>
+                    <span id="errors" style="color:crimson"></span>
+                    <input type="text" name="Language" class="form-control"  value="{{item.Language}}">  
+
+                     
+                     <div class="w-100 mt-2">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="/admin/add-offer/{{item._id}}" type="submit" class="btn btn-success float-end " >Add Offer</a>
+              
+
+                     </div>   
+                     
+             </form>
+    </div>
+  </div>
+</div>
+                
+  </section>
+
+
+{{!-- <script>
+    function viewImage(event){
+        document.getElementById('imgView').src=URL.createObjectURL(event.target.files[0])
+    }
+</script> --}}
+
+
+      <!-- row end -->
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:./partials/_footer.html -->
+       
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+
+
+
+
+<style>
+    #select{
+        width: 100%;
+        background-color: #fff;
+    }
+</style>

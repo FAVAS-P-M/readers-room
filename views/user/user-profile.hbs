@@ -1,0 +1,239 @@
+<section>
+ <marquee bgcolor="yellow"><h5><span style="display:block">Refer Someone!!! get Rs.500 in your Wallet!!!  Referal Link: http://localhost:3001/signup/{{user._id}}</span></h5></marquee>
+<div class="container rounded bg-white mt-5 mb-5">
+    <div style=" text-align:center;color:brown">
+    <span>Referal Link: http://localhost:3001/signup/{{user._id}}</span>
+    </div>
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold"></span><span class="text-black-50"></span><span> </span></div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <form action="/user-profile/{{user._id}}" method="post" id="form">
+                    <h4 class="text-right">User Profile</h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control text-capitalize" name="Name" id="Name" placeholder="first name" value="{{user.Name}}" ></div>
+                  <span id="errorName" style="color:red"></span>
+                  </div>
+                
+                <div class="row mt-3">
+                    <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" name="Mobile" id="Mobile" placeholder="enter phone number..." value="{{user.numbers}}"></div>
+                    <span id="errorMobile" style="color:red"></span>
+                    
+                    <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text" class="form-control text-dark" name="Address" id="Address" value="{{user.Address.[0].address}} " ></div>
+                   <span id="errorAddress" style="color:red"></span>
+                   
+                   <div class="col-md-12"><label class="labels">City</label><input type="text" class="form-control" name="City" id="City" placeholder="enter city..." value="{{user.Address.[0].city}}"></div>
+                    <span id="errorCity" style="color:red" ></span>
+                    
+                    <div class="col-md-12"><label class="labels">Pin code</label><input type="text" name="Pincode" id="Pincode" class="form-control" placeholder="enter Pin code" value="{{user.Address.[0].picode}}"></div>
+                   <span id="errorPincode" style="color:red"></span>
+                   
+                   <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control" name="State" id="State" placeholder="enter state..." value="{{user.Address.[0].state}}"></div>
+                    <span id="errorState" style="color:red" ></span>
+                    
+                    <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" name="Email" id="Email" placeholder="enter Email ID..." value="{{user.Email}}"></div>
+                    <span id="errorEmail" style="color:red"></span>
+                    
+                </div>
+               
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
+            </div>
+            
+<div>
+      <i class="fa-solid fa-wallet"></i></div>
+
+{{!-- wallet --}}
+
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  My Wallet
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">My Wallet</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="single-banner right">
+
+													<div id="sectionD" class="tab-pane">
+														<div class="wallet-container text-center pt-2"
+															style="box-shadow: 0 2px 6px 0 rgba(218, 8, 8, 0.2);transition: 0.3s;background: linear-gradient(rgb(247, 245, 245),rgb(245, 245, 245));">
+
+															<div class="amount-box text-center mt-3">
+																<img style="height: 50px;"
+																	src="https://lh3.googleusercontent.com/ohLHGNvMvQjOcmRpL4rjS3YQlcpO0D_80jJpJ-QA7-fQln9p3n7BAnqu3mxQ6kI4Sw"
+																	alt="wallet">
+																<p>Total Balance</p>
+																<p class="amount pt-3 pb-3" style="font-size: x-large;">
+																	₹ {{#if user.wallet}}{{user.wallet}}{{else}}0{{/if}}</p>
+															</div>
+                                                            <button type="submit" class="btn btn-primary">Wallet History</button>
+															{{#if user.wallet}}
+															<div class="txn-history d-flex justify-content-center mt-2">
+																<p><b class="pl-3">Hurray you earned
+																		₹{{user.wallet}} </b></p>
+																<p class="txn-list pl-3"> You can use {{user.wallet}}
+																	at Checkout</p>
+															</div>
+															{{/if}}
+														</div>
+													</div>
+												</div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- /wallet --}}
+
+
+        </div>
+       </form>
+    </div>
+</div>
+</div>
+</div>
+</section>
+
+{{!-- referral link --}}
+
+
+<script>
+    body {
+    background: rgb(99, 39, 120)
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}
+</script>
+
+
+<script>
+    const name=document.getElementById("Name")
+    const email=document.getElementById("Email")
+    const mobile=document.getElementById("Mobile")
+    const form=document.getElementById("form")
+    const state=document.getElementById("State")
+    const city=document.getElementById("City")
+    const pincode=document.getElementById("Pincode")
+    const address=document.getElementById("Address")
+
+
+    const error1=document.getElementById("errorName")
+    const error2=document.getElementById("errorEmail")
+    const error3=document.getElementById("errorMobile")
+    const error4=document.getElementById("errorForm")
+    const error5=document.getElementById("errorState")
+    const error6=document.getElementById("errorCity")
+    const error7=document.getElementById("errorPincode")
+    const error8=document.getElementById("errorAddress")
+
+
+
+    form.addEventListener('submit',(e)=>{
+        let message1=[]
+        let message2=[]
+        let message3=[]
+
+     
+
+        if(Email.value===''||Email.value===null){
+            message2.push("Please Enter the Email")
+        } else if(Email.value.match(mailformat)===false){
+            message2.push("Please Enter Valid Email")
+        }
+        
+        if(Mobile.value===''||Mobile.value===null){
+            message3.push("Please Enter the Number")
+        } else if (Mobile.value.length<10||Mobile.value.length>10){
+            message3.push("Please Enter valid Number")
+        }
+
+
+        if(message1.length>0){
+            e.preventDefault();
+            error1.innerHTML=message1.join('')
+        }else{
+            error1.innerText=''
+        }
+
+        if(message2.length>0){
+            e.preventDefault()
+            error2.innerText=message2.join('')
+        }else{
+            error2.innerText=''
+        }
+        if(message3.length>0){
+            e.preventDefault()
+            error3.innerText=message3.join('')
+        }else{
+            error3.innerText=''
+        }
+        })
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

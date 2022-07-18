@@ -1,0 +1,85 @@
+<div class="row">
+ <div class="col-md-6 m-auto">
+  <div class="container mt-5 pl-5">
+    <h2 class="text-center">Create new account</h2>
+    {{message2}}
+    <form action="/signup/{{referral}}" id="form" method="post" id="form" name="form" >
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" name="Name" placeholder="Enter Name" id="name">
+        </div>
+
+        <div class="form-group">
+            <label>Email address</label>
+            <input type="email" class="form-control" name="Email" placeholder="Enter email" id="email">
+        </div>
+
+         <div class="form-group">
+            <label>Phone number</label>
+            <input type="numbers" class="form-control" name="numbers" placeholder="Enter mobile number" id="numbers">
+        </div>
+
+               <div class="form-group">
+                   <label>Password</label>
+                   <input type="password" class="form-control" name="password" placeholder="password" id="password">
+                   </div>
+                   <a href="/signup">Already have account?</a>
+            <button type="submit" class="btn btn-primary float-right">signup</button>
+    </form>
+
+
+  </div>
+ </div>
+</div>
+<script>
+    const email=document.getElementById("email")
+    const password=document.getElementById("password")
+    const name=document.getElementById("name")
+     const form=document.getElementById("form");
+        const error1=document.getElementById("errorEmail");
+        const error2=document.getElementById("errorPassword")
+        const error3=document.getElementById("errorName")
+ 
+        form.addEventListener('submit',(e)=>{
+          let message1=[]
+          let message2=[]
+          let message3=[]
+      
+          if(email.value===''||email.value==null){
+            message1.push('Please enter the Email')
+        }else if(email.value.indexOf('@')<=0){
+          message1.push('Invaild @ position')
+        }else if(email.value.charAt(email.value.length-4)!='.'){
+          message1.push('format of email is incorrect')
+
+        }else if(email.value.indexOf('@')==''){
+          message1.push('@ is missing')
+
+        }
+        
+          if(password.value===''||password.value==null){
+            message2.push('Please enter the password')
+          }
+           else if(password.value.length<4){
+            message2.push('password must be atleast 4 char')
+          }
+          if(name.value==''||name.value==null){
+             message3.push('Please enter name')
+         }else if(isNaN(name.value)==false){
+             message3.push("Enter characters only")
+         }
+          if(message1.length>0){
+           e.preventDefault();
+           error1.innerText=message1.join('  ')
+          }
+          if(message2.length>0){
+            e.preventDefault()
+            error2.innerText=message2.join('  ')
+          }
+          if(message3.length>0){
+            e.preventDefault()
+            error3.innerText=message3.join('  ')
+          }
+          })
+       
+</script>

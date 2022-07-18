@@ -1,0 +1,240 @@
+<div class="container-scroller d-flex">
+    <!-- partial:./partials/_sidebar.html -->
+    {{>admin-header}}
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:./partials/_navbar.html -->
+      {{>admin-navbar}}
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+         {{!-- add product --}}
+ 
+ 
+ 
+ <div class="container mt-4">
+        <div class="row">
+          <div class="col-md-6 mx-auto">
+                <h2 class="text-center">Add product</h2>
+                <form action="/admin/add-product" method="post" id="form1" enctype="multipart/form-data" onsubmit="validation(event)" name="myform">
+
+                    <label for="">Name</label>
+                    <input type="text" name="Name" class="form-control" id="name">
+
+                    
+                    <select id="category" name="Category">Category
+                        {{#each category}}
+                        <option value="{{this.Category}}" name="Category">{{this.Category}}</option>
+                        {{/each}}
+                    </select>
+
+                    <br>
+                    <label for="">Author</label>
+                    <span id="errors" style="color:crimson"></span>
+                    <input type="text" name="Author" class="form-control">
+
+
+                    <label for="">Price</label>
+                     <span id="errors" style="color:crimson"></span>
+                    <input type="number" name="Price" class="form-control">
+
+                    <label for="">Description</label>
+                    <input type="text" name="Description" class="form-control">
+                    <span id="errors" style="color:crimson"></span>
+
+                    <label for="">ISBN:</label>
+                    <span id="errors" style="color:crimson"></span>
+                    <input type="number" name="ISBN" class="form-control">
+
+                    <label for="">publisher</label>
+                    <span id="errors" style="color:crimson"></span>
+                    <input type="text" name="Publisher" class="form-control">
+
+                    <label for="">Edition</label>
+                    <span id="errors" style="color:crimson"></span>
+                    <input type="number" name="Edition" class="form-control">
+
+                    <label for="">No. of pages</label>
+                    <span id="errors" style="color:crimson"></span>
+                    <input type="number" name="Pages" class="form-control">
+
+                    <label for="">Language</label>
+                    <span id="errors" style="color:crimson"></span>
+                    <input type="text" name="Language" class="form-control">  
+
+                    <label for="">Image</label>
+                <div class="mb-3  col-lg-3  form-control">
+                  <img src="" id="imgView" alt="" style="width:100px">
+                  <input type="file" class="form-control" id="id_image2" name="image"  required multiple >
+                   <br>
+                  <div class="vald-info" id="info2"></div>
+                  <h5 class="error_form text-danger" id="image2_error_message"></h5>
+                     </div> 
+                    
+                    <input type="submit" class="btn btn-primary float-end" value="submit">
+                    </form>
+
+
+            </div>
+
+             
+
+        
+        </div>
+</div>
+{{!-- ----------------------------------------------------------------------------------------------- --}}
+         {{!-- /add products --}}
+          <!-- row end -->
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:./partials/_footer.html -->
+       
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js"></script>
+
+<script>
+     function validation(e){
+
+if (document.myform.Name.value == "") {
+    e.preventDefault()
+     document.getElementById('errors').innerHTML="*Please enter a Name*";
+     return false;
+}
+if (document.myform.Author.value == "") {
+     e.preventDefault()
+     document.getElementById('errors').innerHTML="*Please enter Author Name*";
+     return false;
+}
+
+if (document.myform.Price.value == "") {
+     e.preventDefault()
+     document.getElementById('errors').innerHTML="*Please enter Price Amount*";
+     return false;
+}
+
+if (document.myform.Description.value == "") {
+     e.preventDefault()
+     document.getElementById('errors').innerHTML="*Please enter Description*";
+     return false;
+}
+
+if (document.myform.ISBN.value == "") {
+     e.preventDefault()
+     document.getElementById('errors').innerHTML="*Please enter ISBN*";
+     return false;
+}
+
+if (document.myform.Publisher.value == "") {
+     e.preventDefault()
+     document.getElementById('errors').innerHTML="*Please enter Publisher's Name*";
+     return false;
+}
+
+if (document.myform.Edition.value == "") {
+     e.preventDefault()
+     document.getElementById('errors').innerHTML="*Please enter Edition *";
+     return false;
+}
+
+if (document.myform.Pages.value == "") {
+     e.preventDefault()
+     document.getElementById('errors').innerHTML="*Please enter Total pages *";
+     return false;
+}
+
+if (document.myform.Language.value == "") {
+     e.preventDefault()
+     document.getElementById('errors').innerHTML="*Please enter Language *";
+     return false;
+}
+
+if (document.myform.Language.value == "") {
+     e.preventDefault()
+     document.getElementById('errors').innerHTML="*Please enter Language *";
+     return false;
+}
+
+    }
+ </script> 
+
+
+{{!-- <script>
+
+    function funsubmit() {
+        let name = document.getElementById('name').value
+        let category = document.getElementById('category')
+        let price = document.getElementById('price')
+        let description = document.getElementById('description')
+        let image = document.getElementById('image')
+
+
+        let errorName = document.getElementById('nameErr')
+        let errorCategory = document.getElementById('errorCategory')
+        let errorPrice = document.getElementById('errorPrice')
+        let errorDescription = document.getElementById('errorDescription')
+        let errorImage = document.getElementById('errorImage')
+
+
+        if (name == '') {
+            errorName.style.display = 'block'
+        }
+    } --}}
+<script>
+function cancelProduct() {
+Swal.fire({
+            title: "Are you sure?",
+            text: "You Want to cancel!",
+            icon: "warning",
+            iconColor: '#bf0f0f',
+            showCancelButton: true,
+            confirmButtonColor: '#11ba25',
+            cancelButtonColor: "#bf0f0f",
+            confirmButtonText: "yes"
+
+
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $("#form1").submit(function (e) {
+
+                    e.preventDefault(); // avoid to execute the actual submit of the form.
+
+                    var form = $(this);
+                    var actionUrl = form.attr('action');
+
+                    $.ajax({
+                        type: "POST",
+                        url: actionUrl,
+                        data: form.serialize(), // serializes the form's elements.
+                        success: function (data) {
+                            Swal.fire({
+                                title: "Are you sure?",
+                            }) // show response from the php script.
+                        }
+                    });
+
+                });
+
+            } else {
+                return false;
+            }
+        })
+    }
+
+</script>
+{{!-- location.href = "/admin/add-product" --}}
+
+<style>
+    #category {
+  width: 100%;
+  margin-top: 20px;
+  height: 45px;
+  background-color: white;
+}
+</style>

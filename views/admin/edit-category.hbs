@@ -1,0 +1,48 @@
+
+
+<div class="container-scroller d-flex">
+    <!-- partial:./partials/_sidebar.html -->
+    {{>admin-header}}
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:./partials/_navbar.html -->
+      {{>admin-navbar}}
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+
+
+<section>
+    <div class="container">
+        <div class="row">
+            <h2>Edit Category</h2>
+            <div class="col-md-6">
+                  <form action="/admin/edit-category/{{data._id}}" method="post">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Enter Category Name</label>
+    <input type="category" name="category" value="{{data.category}}" class="form-control"   placeholder="Enter category">
+    </div>
+   
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+            </div>
+          
+        </div>
+    </div>
+</section>
+
+
+
+          
+          <!-- row end -->
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:./partials/_footer.html -->
+       
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>

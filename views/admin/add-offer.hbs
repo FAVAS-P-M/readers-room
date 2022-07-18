@@ -1,0 +1,52 @@
+<div class="container-scroller d-flex">
+    <!-- partial:./partials/_sidebar.html -->
+    {{>admin-header}}
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:./partials/_navbar.html -->
+      {{>admin-navbar}}
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+
+
+
+
+
+
+
+
+<section>
+<div class="container">
+    <div class="row">
+        <div class="md-col-3  py-5">
+ <div class=" text-center"> 
+<h3>ADD OFFERS FROM HERE</h3>
+</div> 
+
+
+<form action="/admin/add-offer/{{pro}}" method="post" >
+    <input name="offerStart" type="date">
+     <input name="offerEnd" type="date">
+      <input name="offer" type="text" >
+    <input type="submit">
+</form> 
+
+        </div>
+    </div>
+</div>
+</section>
+
+
+
+       <!-- row end -->
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:./partials/_footer.html -->
+       
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>

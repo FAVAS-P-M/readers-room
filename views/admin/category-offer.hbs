@@ -1,0 +1,66 @@
+
+<div class="container-scroller d-flex">
+    <!-- partial:./partials/_sidebar.html -->
+    {{>admin-header}}
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:./partials/_navbar.html -->
+      {{>admin-navbar}}
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+
+<section>
+<div class="row">
+<div class="col-md-6 mx-auto">
+    <h2>Add Offer For Category</h2>
+
+<form action="/admin/category-offer" method="post">
+                      <select name="Category" id="element">Category
+                        {{#each categories}}
+                        <option value="{{this.Category}}" name="Category">{{this.Category}}</option>
+                        {{/each}}
+                    </select><br><br>
+                  
+
+
+<label>Starting Date</label>
+    <input name="start" type="date" class="form-control"><br>
+     
+     <label>Ending Date</label>
+     <input name="end" type="date" class="form-control"><br>
+      
+      <label>Enter Offer In Percentage</label>
+      <input name="offer" type="text" class="form-control"><br>
+    <input type="submit" value="submit" class="btn btn-primary" ><br>
+</form> 
+
+        </div>
+    </div>
+
+</section>
+
+
+
+
+    <!-- row end -->
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:./partials/_footer.html -->
+       
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+
+
+<style>
+
+  #element {
+  width: 100%;
+  background: white;
+  height: 45px;
+}
+</style>
